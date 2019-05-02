@@ -29,6 +29,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -143,7 +144,7 @@ public class RNReactNativeSharingWinstagramModule extends ReactContextBaseJavaMo
              share.setType(type);
              share.setPackage("com.instagram.android");
 
-             Uri uri = Uri.fromFile(media);
+             Uri uri = FileProvider.getUriForFile(currentActivity, getReactApplicationContext().getPackageName()+ ".provider", media);
 
              // Add the URI to the Intent.
              share.putExtra(Intent.EXTRA_STREAM, uri);
